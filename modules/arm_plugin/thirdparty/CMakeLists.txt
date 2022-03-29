@@ -18,8 +18,8 @@ if(ARM_COMPUTE_INCLUDE_DIR OR ARM_COMPUTE_LIB_DIR)
             PATHS ${ARM_COMPUTE_LIB_DIR}
         )
         message(STATUS "Found arm_compute-static: ${ARM_COMPUTE_LIB}")
-        add_library(arm_compute STATIC IMPORTED GLOBAL)
-        set_target_properties(arm_compute PROPERTIES
+        add_library(arm_compute::arm_compute STATIC IMPORTED GLOBAL)
+        set_target_properties(arm_compute::arm_compute PROPERTIES
             IMPORTED_LOCATION ${ARM_COMPUTE_LIB}
             INTERFACE_INCLUDE_DIRECTORIES ${ARM_COMPUTE_INCLUDE_DIR})
         find_library(
@@ -28,14 +28,14 @@ if(ARM_COMPUTE_INCLUDE_DIR OR ARM_COMPUTE_LIB_DIR)
             PATHS ${ARM_COMPUTE_LIB_DIR}
         )
         message(STATUS "Found arm_compute_core-static: ${ARM_COMPUTE_CORE_LIB}")
-        add_library(arm_compute_core STATIC IMPORTED GLOBAL)
-        set_target_properties(arm_compute_core PROPERTIES
+        add_library(arm_compute::arm_compute_core STATIC IMPORTED GLOBAL)
+        set_target_properties(arm_compute::arm_compute_core PROPERTIES
             IMPORTED_LOCATION ${ARM_COMPUTE_CORE_LIB}
             INTERFACE_INCLUDE_DIRECTORIES ${ARM_COMPUTE_INCLUDE_DIR})
     endif()
 
-    add_library(half INTERFACE IMPORTED GLOBAL)
-    set_target_properties(half PROPERTIES
+    add_library(arm_compute::half INTERFACE IMPORTED GLOBAL)
+    set_target_properties(arm_compute::half PROPERTIES
         INTERFACE_INCLUDE_DIRECTORIES  ${ARM_COMPUTE_INCLUDE_DIR})
 else()
     message(STATUS "Configure to build ${CMAKE_CURRENT_SOURCE_DIR}/ComputeLibrary")
